@@ -1,0 +1,25 @@
+name: "Deploy WebApi"
+
+on:
+  # This is a reusable workflow
+  workflow_call:
+    inputs:
+      environment:
+        description: "Name of the environment to deploy"
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  deploy-api:
+    runs-on: ubuntu-latest
+    environment: ${{inputs.environment}}
+    steps:
+        - run: echo "DEPLOYING THE API..."

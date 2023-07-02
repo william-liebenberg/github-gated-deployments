@@ -1,0 +1,11 @@
+name: unit-test
+
+on:
+  # This is a reusable workflow
+  workflow_call:
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "TESTING THE CODE..."

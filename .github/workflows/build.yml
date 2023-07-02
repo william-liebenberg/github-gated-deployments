@@ -1,0 +1,11 @@
+name: Build Code
+
+on:
+  # This is a reusable workflow
+  workflow_call:
+
+jobs:
+  build-code:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "BUILDING THE CODE..."

@@ -1,0 +1,39 @@
+name: "Deploy-Environment"
+
+on:
+  # This is a reusable workflow
+  workflow_call:
+    inputs: 
+      environment:
+        description: "Name of the environment to deploy"
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  deploy-infra:
+    uses: ./.github/workflows/deploy-infra.yml
+    with:
+      environment: ${{ inputs.environment }}
+    secrets: inherit
+
+  deploy-webapi:
+    needs: deploy-infra
+    uses: ./.github/workflows/deploy-webapi.yml
+    with:
+      environment: ${{ inputs.environment }}
+    secrets: inherit
+
+  deploy-ui:
+    needs: deploy-infra
+    uses: ./.github/workflows/deploy-ui.yml
+    with:
+      environment: ${{ inputs.environment }}
+    secrets: inherit
