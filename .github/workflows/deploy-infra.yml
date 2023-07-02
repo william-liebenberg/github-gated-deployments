@@ -1,4 +1,4 @@
-name: "Deploy UI"
+name: "Deploy Infra"
 
 on:
   # This is a reusable workflow
