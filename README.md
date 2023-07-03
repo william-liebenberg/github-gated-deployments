@@ -37,3 +37,29 @@ Figure: Prevent Admins from doing dodgy things!
 
 ![Environments](docs/images/all-environments.png)
 Figure: All configured environments
+
+## Example workflow
+
+Here is a high-level workflow for building and deploying a project:
+
+1. In Parallel:
+   - Build the .NET WebAPI application
+   - Build the UI application
+   - Run Unit Test
+2. Automatically deploy the applications to `dev`
+3. After review and manual approval by Release Master, deploy the applications to `staging`
+4. After review and manual approval by Release Master, deploy the applications to `prod`
+
+Once the workflow is triggered (by push, pr, schedule or dispatch), it will run until a manual approval is required.
+
+![Waiting for manual approval to deploy to Staging](docs/images/waiting-for-manual-approval.png)
+Figure: Waiting for manual approval to deploy to Staging
+
+Once the reviewer has approved, the workflow will continue until it reaches another approval or reaches the end of the workflow.
+
+![Manually approving a review before deploying to next environment](docs/images/manual-approval.png)
+Figure: Manually approving a review before deploying to next environment
+
+Now you know how to set up manual approval gates using GitHub Environments.
+
+DONE!
